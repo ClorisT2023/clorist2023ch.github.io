@@ -205,7 +205,7 @@ function select_lg() {
         load_all_ch();
         selects = document.querySelectorAll('.lg_' + lexlang + ', .lg_ch');
     } else {
-        full_data = ['number',
+        full_data = ['input_number',
             'word_shown',
             'valid',
             'dummy',
