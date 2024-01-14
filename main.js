@@ -264,21 +264,21 @@ function load_all_ch() {
 }
 
 function lexmain() {
-    basic_times.test_start = Date.now();
-    document.getElementById('div_lex_intro').style.display = 'none';
-    if (lexlang.length > 2) {
-        document.getElementById('div_lexch_main').style.display = 'block';
-        window.scrollTo(0, 0);
-    } else {
+        basic_times.test_start = Date.now();
+        document.getElementById('div_lex_intro').style.display = 'none';
         document.getElementById('div_lex_main').style.display = 'block';
         lex_next();
     }
-}
 
-function lexmain_ch() {
-    basic_times.test_start = Date.now();
-    document.getElementById('div_lex_intro').style.display = 'none';
-}
+function lexclick(response) {
+        console.log("Clicked response:", response);
+        lex_next();
+    }
+
+function lex_next() {
+        var stimulus = "Next stimulus";
+        document.getElementById('lexstim').innerText = stimulus;
+    }
 
 function copy_to_clip(text) {
     if (window.clipboardData && window.clipboardData.setData) {
