@@ -65,18 +65,18 @@ function lexclick(lexrespd) {
     lexstim_item.response = lexrespd;
     console.log(lexstim_item);
     let corrresp = 'no';
-    if (lexstim_item.wstatus === 1 && lexrespd === 'yes') {
+    if (lexstim_item.wstatus === 1 && lexrespd === '是') {
         corrresp = 'yes';
         if (lexstim_item.dummy === 0) {
             corr_word++;
         }
-    } else if (lexstim_item.wstatus === 0 && lexrespd === 'no') {
+    } else if (lexstim_item.wstatus === 0 && lexrespd === '否') {
         corrresp = 'yes';
         if (lexstim_item.dummy === 0) {
             corr_nonword++;
         }
     }
-
+    
     var inputNumber = document.getElementById("inputField").value;
     full_data += [
     inputNumber, 
