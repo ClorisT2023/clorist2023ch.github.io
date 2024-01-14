@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-let lexlang = 'ch1'; // English: 'en', German: 'de', Dutch: 'nl', Chinese: 'ch1', Chinese incl. English: 'ch2'
+let lexlang = 'en'; // English: 'en', German: 'de', Dutch: 'nl', Chinese: 'ch1', Chinese incl. English: 'ch2'
 
 let path_imgs = './ch_items/';
 
@@ -65,18 +65,18 @@ function lexclick(lexrespd) {
     lexstim_item.response = lexrespd;
     console.log(lexstim_item);
     let corrresp = 'no';
-    if (lexstim_item.wstatus === 1 && lexrespd === '是') {
+    if (lexstim_item.wstatus === 1 && lexrespd === 'yes') {
         corrresp = 'yes';
         if (lexstim_item.dummy === 0) {
             corr_word++;
         }
-    } else if (lexstim_item.wstatus === 0 && lexrespd === '否') {
+    } else if (lexstim_item.wstatus === 0 && lexrespd === 'no') {
         corrresp = 'yes';
         if (lexstim_item.dummy === 0) {
             corr_nonword++;
         }
     }
-    
+
     var inputNumber = document.getElementById("inputField").value;
     full_data += [
     inputNumber, 
@@ -205,7 +205,7 @@ function select_lg() {
         load_all_ch();
         selects = document.querySelectorAll('.lg_' + lexlang + ', .lg_ch');
     } else {
-        full_data = ['input_number',
+        full_data = ['number',
             'word_shown',
             'valid',
             'dummy',
@@ -274,16 +274,6 @@ function lexmain() {
         lex_next();
     }
 }
-
-function lexclick(response) {
-        console.log("Clicked response:", response);
-        lex_next();
-    }
-
-function lex_next() {
-        var stimulus = "Next stimulus";
-        document.getElementById('lexstim').innerText = stimulus;
-    }
 
 function copy_to_clip(text) {
     if (window.clipboardData && window.clipboardData.setData) {
