@@ -89,7 +89,7 @@ function lexclick(lexrespd) {
     ].join('\t') + '\n';
 
     document.activeElement.blur();
-    if (lextale_items.length > 0) {
+    if (lextale_items.length >= 0) {
         lex_next();
     } else {
         let lex_score = (corr_word / 40 * 100 + corr_nonword / 20 * 100) / 2;
