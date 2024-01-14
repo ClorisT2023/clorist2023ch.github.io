@@ -43,10 +43,6 @@ function downloadAndMove(data, filenamePrefix) {
         moveToNextPage();
 }
 
-function goToNextPage() {
-        window.location.href = "";
-}
-
 function lex_next() {
     window.lexstim_item = lextale_items.shift();
     document.getElementById('lexstim').textContent = lexstim_item.word;
