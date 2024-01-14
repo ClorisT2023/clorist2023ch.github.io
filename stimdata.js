@@ -64,7 +64,7 @@ lex_dict = {
         { 'word': 'listless', 'wstatus': 1, 'dummy': 0 },
         { 'word': 'wrought', 'wstatus': 1, 'dummy': 0 }
     ],
-    'en': [
+    'ch': [
         { 'filename': '1_True_55.png', 'valid': 1 },
         { 'filename': '2_Wrong_2.png', 'valid': 0 },
         { 'filename': '3_True_29.png', 'valid': 1 },
