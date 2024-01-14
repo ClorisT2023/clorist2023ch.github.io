@@ -44,9 +44,24 @@ function downloadAndMove(data, filenamePrefix) {
 }
 
 function lex_next() {
+    // window.lexstim_item = lextale_items.shift();
+    // document.getElementById('lexstim').textContent = lexstim_item.word;
+    // start_time = Date.now();
     window.lexstim_item = lextale_items.shift();
-    document.getElementById('lexstim').textContent = lexstim_item.word;
-    start_time = Date.now();
+    const sources = lexstim_item.map(dct => dct.filename);
+    document.getElementById('ch_list').innerHTML = sources.map(fillsrcs).join('');
+
+    preloadAll(sources)
+        .then(images => images_loaded())
+        .catch(err => {
+            console.error('Failed', err);
+            document.getElementById('loading_id').innerHTML = '<br><b>Failed to load test images! (For proper usage see  <a href="https://github.com/gasparl/lextale" target="_blank">https://github.com/xxx/</a>. See Console for more information about this specific error.)</b>';
+        });
+
+    let quests = document.querySelectorAll('.question_class');
+    quests.forEach((elem) => {
+        elem.src = path_imgs + 'LEXTALE_CH_instruction_question.png';
+    });
 }
 
 let basic_times = {};
