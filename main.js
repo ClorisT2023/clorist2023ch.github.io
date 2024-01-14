@@ -266,7 +266,13 @@ function load_all_ch() {
 function lexmain() {
     basic_times.test_start = Date.now();
     document.getElementById('div_lex_intro').style.display = 'none';
-    document.getElementById('div_lex_main').style.display = 'block';
+    if (lexlang.length > 2) {
+        document.getElementById('div_lexch_main').style.display = 'block';
+        window.scrollTo(0, 0);
+    } else {
+        document.getElementById('div_lex_main').style.display = 'block';
+        lex_next();
+    }
 }
 
 function lexclick(response) {
