@@ -29,7 +29,7 @@
             <span style="color:grey">-----------------------------------------------------------------------</span>
         </div>
         <br /><br />
-        <button class="bttn" onclick="select_lg();">>></button>
+        <button class="bttn" onclick="select_lg();">下一頁</button>
         <br /><br />
         <i>For information and references, please see <a href="https://github.com/ClorisT2023/"
                 target="_blank">https://github.com/ClorisT2023/</a></i>
@@ -58,22 +58,25 @@
 
         <br /><br />
         <button id="startbuttn" class="bttn" onclick="lexmain();">
-            <span class="lg_en lg_de lg_nl">>></span>
+            <span class="lg_en lg_de lg_nl">下一頁</span>
             <span class="lg_ch"> >> </span>
         </button>
         <br /><br />
     </div>
-
-    <div id="div_lexch_main">
+    
+    <div id="div_lex_main">
         <button onclick="lexclick('no');" class="lexresp_buttons lexresp_left">
-            <span class="lg_ch">否</span>
+            <span class="lg_en">否</span>
+            <span class="lg_de">nein</span>
+            <span class="lg_nl">nee</span>
         </button>
         <button onclick="lexclick('yes');" class="lexresp_buttons lexresp_right">
-            <span class="lg_ch">是</span>
+            <span class="lg_en">是</span>
+            <span class="lg_de lg_nl">ja</span>
         </button>
         <p id="lexstim"></p>
     </div>
-    
+
     <div id="div_end">
         <br /><br />
         <div style="text-align: center;font-variant: small-caps;">測試已完成。</div>
