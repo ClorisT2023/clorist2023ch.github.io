@@ -1,6 +1,6 @@
 lex_dict = {
     'en': [
-        { 'word': 'abd', 'wstatus': 0, 'dummy': 1 },
+        { 'word': '隧', 'wstatus': 0, 'dummy': 1 },
         { 'word': 'denial', 'wstatus': 1, 'dummy': 1 },
         { 'word': 'generic', 'wstatus': 1, 'dummy': 1 },
         { 'word': 'mensible', 'wstatus': 0, 'dummy': 0 },
