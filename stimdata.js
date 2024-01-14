@@ -1,6 +1,6 @@
 lex_dict = {
     'en': [
-        { 'word': '隧', 'wstatus': 0, 'dummy': 1 },
+        { 'word': '1_True_55.png', 'wstatus': 0, 'dummy': 1 }, // 隧
         { 'word': 'denial', 'wstatus': 1, 'dummy': 1 },
         { 'word': 'generic', 'wstatus': 1, 'dummy': 1 },
         { 'word': 'mensible', 'wstatus': 0, 'dummy': 0 },
