@@ -43,8 +43,8 @@ function downloadAndMove(data, filenamePrefix) {
         moveToNextPage();
 }
 
-function nextPage() {
-    document.getElementById('nextButton').addEventListener('click', nextPage);
+function goToNextPage() {
+        window.location.href = "next-page.html";
 }
 
 function lex_next() {
