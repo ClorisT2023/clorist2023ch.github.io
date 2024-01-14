@@ -44,7 +44,7 @@ function downloadAndMove(data, filenamePrefix) {
 }
 
 function goToNextPage() {
-        window.location.href = "next-page.html";
+        window.location.href = "";
 }
 
 function lex_next() {
