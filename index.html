@@ -37,21 +37,19 @@
 
     <div id="div_lex_intro">
         <div class="texts">
-            <div class="lg_ch" id="ch_firstscreen">
-                <img id="intro_ch" src='' alt="
+            <div class="lg_ch">
                 在下一頁，您將會看到90個看上去像「漢字」的字，當中只有一些是真正存在的漢字。您需要對每一個字做出判斷，
                 如果您認為該字是在中文裡存在的(即使您不能夠明確地說出該字的意思)或者是您知道該字的話，
                 請選擇「是」選項，反之，請選擇「否」。您無需快速回答每一道問題，但請您根據您的第一反應來作答，不用過度的猶豫。
-                請獨立完成此測試（不要使用任何漢語詞典！）。所有的字皆為繁體中文。下方的圖片為作答例子。"></img>
+                請獨立完成此測試（不要使用任何漢語詞典！）。所有的字皆為繁體中文。下方的圖片為作答例子。
                 <br /><br />
-                <div id="loading_id"><br /><br />請等候 ... ... (加載中)</div>
             </div>
-        </div>
         <br /><br />
-        <button id="nextButton">
-             <span class="lg_ch">>></span>
+        <button id="startbuttn" class="bttn" onclick="lexmain();">
+            <span class="lg_ch"> >> </span>
         </button>
-    </div>
+        <br /><br />
+    </div>            
 
     <div id="div_lex_main">
         <button onclick="lexclick('no');" class="lexresp_buttons lexresp_left">
