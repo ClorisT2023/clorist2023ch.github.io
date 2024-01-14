@@ -275,6 +275,11 @@ function lexmain() {
     }
 }
 
+function lexmain_ch() {
+    basic_times.test_start = Date.now();
+    document.getElementById('div_lex_intro').style.display = 'none';
+}
+
 function copy_to_clip(text) {
     if (window.clipboardData && window.clipboardData.setData) {
         return clipboardData.setData("Text", text);
