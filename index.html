@@ -63,7 +63,7 @@
         <br /><br />
     </div>
     
-    <div id="div_lex_main">
+<!--     <div id="div_lex_main">
         <button onclick="lexclick('no');" class="lexresp_buttons lexresp_left">
             <span class="lg_en">否</span>
         </button>
@@ -71,6 +71,37 @@
             <span class="lg_en">是</span>
         </button>
         <p id="lexstim"></p>
+    </div> -->
+
+    <div id="div_lexch_main" style="margin: auto;">
+        <div class="lg_ch texts">
+            <img id="intro_ch_short2" src=''
+                alt='如果您认为该字为汉字,请勾选左上方"是汉字"的选项。总共有90个汉字，请在提交答案前对所有汉字作出判断。(error note: missing image!)'>
+            <br />
+            <div class="lg_ch2">
+                Please select the top-left option <img class="question_class" src='' alt="是汉字"> if you think the item is
+                a real Chinese character. There are a total of 90 words, please scroll through and consider all of them
+                before submitting
+                your answers.
+            </div>
+            <br />
+
+            <ul id='ch_list' class="lists checkbox chover">
+            </ul>
+            <hr />
+            <br />
+            <img id="intro_ch_end" src='' alt='总共有90个汉字，请在提交答案前对所有汉字作出判断。'>
+            <br />
+            <div class="lg_ch2">
+                There are a total of 90 words, please scroll through and consider all of them before submitting your
+                answers.
+            </div>
+            <br />
+            <button class="bttn" style="margin-left:70%" onclick="ch_ending();">
+                >>
+            </button>
+            <br />
+        </div>
     </div>
 
     <div id="div_end">
