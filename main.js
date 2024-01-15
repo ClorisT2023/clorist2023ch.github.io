@@ -51,31 +51,13 @@ function downloadAndMove(data, filenamePrefix) {
 
 function lex_next() {
   window.lexstim_item = lextale_items.shift();
-  let lexstimElement = document.getElementById('lexstim');
 
   if (lexstim_item.word.endsWith('.png')) {
-    // Check if the word is from the "ch_items" folder
-    if (lexstim_item.word.startsWith('ch_items/')) {
-      // Extract the filename without the folder path
-      let filename = lexstim_item.word.substring(9);
-
-      // Remove the file extension
-      let word = filename.substring(0, filename.lastIndexOf('.'));
-
-      // Create an image element
-      let imgElement = document.createElement('img');
-      imgElement.src = 'ch_items/' + filename;
-
-      // Clear the lexstim element and append the image
-      lexstimElement.textContent = '';
-      lexstimElement.appendChild(imgElement);
-    } else {
-      // Handle other cases of .png words
-      lexstimElement.textContent = lexstim_item.word;
-    }
+    document.getElementById('leximage').src = 'ch_items/' + lexstim_item.word;
+    document.getElementById('leximage').style.display = 'block';
   } else {
-    // Handle normal words
-    lexstimElement.textContent = lexstim_item.word;
+    document.getElementById('lexstim').textContent = lexstim_item.word;
+    document.getElementById('leximage').style.display = 'none';
   }
 
   start_time = Date.now();
