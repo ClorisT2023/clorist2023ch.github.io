@@ -57,7 +57,14 @@ function lexmain() {
 
 function lex_next() {
     window.lexstim_item = lextale_items.shift();
-    document.getElementById('lexstim').textContent = lexstim_item.word;
+    const sources = lextale_items.map(dct => dct.filename);
+    document.getElementById('ch_list').innerHTML = sources.map(fillsrcs).join('');
+    // window.lextale_items = lex_dict.ch;
+    // const sources = lextale_items.map(dct => dct.filename);
+    // document.getElementById('ch_list').innerHTML = sources.map(fillsrcs).join('');
+        
+    // window.lexstim_item = lextale_items.shift();
+    // document.getElementById('lexstim').textContent = lexstim_item.word;
     start_time = Date.now();
 }
 
