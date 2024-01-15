@@ -49,6 +49,20 @@ function downloadAndMove(data, filenamePrefix) {
 //     start_time = Date.now();
 // }
 
+function lexmain() {
+  basic_times.test_start = Date.now();
+  document.getElementById('div_lex_intro').style.display = 'none';
+  document.getElementById('div_end').style.display = 'none';
+
+  if (lexlang.length > 2) {
+    document.getElementById('div_lexch_main').style.display = 'block';
+    window.scrollTo(0, 0);
+  } else {
+    document.getElementById('div_lex_main').style.display = 'block';
+    lex_next();
+  }
+}
+
 function lex_next() {
   window.lexstim_item = lextale_items.shift();
 
@@ -62,7 +76,6 @@ function lex_next() {
 
   start_time = Date.now();
 }
-
 let basic_times = {};
 let full_data;
 let corr_word = 0;
@@ -277,17 +290,17 @@ function load_all_ch() {
     });
 }
 
-function lexmain() {
-    basic_times.test_start = Date.now();
-    document.getElementById('div_lex_intro').style.display = 'none';
-    if (lexlang.length > 2) {
-        document.getElementById('div_lexch_main').style.display = 'block';
-        window.scrollTo(0, 0);
-    } else {
-        document.getElementById('div_lex_main').style.display = 'block';
-        lex_next();
-    }
-}
+// function lexmain() {
+//     basic_times.test_start = Date.now();
+//     document.getElementById('div_lex_intro').style.display = 'none';
+//     if (lexlang.length > 2) {
+//         document.getElementById('div_lexch_main').style.display = 'block';
+//         window.scrollTo(0, 0);
+//     } else {
+//         document.getElementById('div_lex_main').style.display = 'block';
+//         lex_next();
+//     }
+// }
 
 function copy_to_clip(text) {
     if (window.clipboardData && window.clipboardData.setData) {
