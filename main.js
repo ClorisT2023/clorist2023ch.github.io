@@ -43,12 +43,38 @@ function downloadAndMove(data, filenamePrefix) {
         moveToNextPage();
 }
 
-function lex_next() {
-    window.lexstim_item = lextale_items.shift();
-    document.getElementById('lexstim').textContent = lexstim_item.word;
-    start_time = Date.now();
-}
+// function lex_next() {
+//     window.lexstim_item = lextale_items.shift();
+//     document.getElementById('lexstim').textContent = lexstim_item.word;
+//     start_time = Date.now();
+// }
 
+function lex_next() {
+  window.lexstim_item = lextale_items.shift();
+  let lexstimElement = document.getElementById('lexstim');
+
+  if (lexstim_item.word.endsWith('.png')) {
+    // Check if the word is from the "ch_items" folder
+    if (lexstim_item.word.startsWith('ch_items/')) {
+      // Extract the filename without the folder path
+      let filename = lexstim_item.word.substring(9);
+
+      // Remove the file extension
+      let word = filename.substring(0, filename.lastIndexOf('.'));
+
+      // Update the text content of the element
+      lexstimElement.textContent = word;
+    } else {
+      // Handle other cases of .png words
+      lexstimElement.textContent = lexstim_item.word;
+    }
+  } else {
+    // Handle normal words
+    lexstimElement.textContent = lexstim_item.word;
+  }
+
+  start_time = Date.now();
+}
 let basic_times = {};
 let full_data;
 let corr_word = 0;
