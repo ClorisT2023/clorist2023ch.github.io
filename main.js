@@ -62,8 +62,13 @@ function lex_next() {
       // Remove the file extension
       let word = filename.substring(0, filename.lastIndexOf('.'));
 
-      // Update the text content of the element
-      lexstimElement.textContent = word;
+      // Create an image element
+      let imgElement = document.createElement('img');
+      imgElement.src = 'ch_items/' + filename;
+
+      // Clear the lexstim element and append the image
+      lexstimElement.textContent = '';
+      lexstimElement.appendChild(imgElement);
     } else {
       // Handle other cases of .png words
       lexstimElement.textContent = lexstim_item.word;
@@ -75,6 +80,7 @@ function lex_next() {
 
   start_time = Date.now();
 }
+
 let basic_times = {};
 let full_data;
 let corr_word = 0;
