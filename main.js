@@ -43,89 +43,23 @@ function downloadAndMove(data, filenamePrefix) {
         moveToNextPage();
 }
 
-// function lex_next() {
-//     window.lexstim_item = lextale_items.shift();
-//     document.getElementById('lexstim').textContent = lexstim_item.word;
-//     start_time = Date.now();
-// }
-
-// Global variables
-let imageIndex = 0; // Index of the current image being displayed
-let correctCount = 0; // Count of correct responses
-
-// Array of image filenames
-const imageFilenames = ['image1.png', 'image2.png', '3_True_29.png']; // Replace with your actual image filenames
-
 function lexmain() {
-  basic_times.test_start = Date.now();
-  document.getElementById('div_lex_intro').style.display = 'none';
-
-  if (lexlang.length > 2) {
-    document.getElementById('div_lexch_main').style.display = 'block';
-    window.scrollTo(0, 0);
-  } else {
-    document.getElementById('div_lex_main').style.display = 'block';
-    displayNextImage();
-  }
+    basic_times.test_start = Date.now();
+    document.getElementById('div_lex_intro').style.display = 'none';
+    if (lexlang.length > 2) {
+        document.getElementById('div_lexch_main').style.display = 'block';
+        window.scrollTo(0, 0);
+    } else {
+        document.getElementById('div_lex_main').style.display = 'block';
+        lex_next();
+    }
 }
 
-function displayNextImage() {
-  if (imageIndex < imageFilenames.length) {
-    const imageFilename = imageFilenames[imageIndex];
-    const imageURL = 'ch_items/' + imageFilename;
-    displayPNGImage(imageURL);
-  } else {
-    // All images displayed, calculate correct rate
-    const totalQuestions = imageFilenames.length;
-    const correctRate = (correctCount / totalQuestions) * 100;
-    console.log('Correct Rate:', correctRate.toFixed(2) + '%');
-    // Perform any further actions with the correct rate here
-
-    // Reset variables for the next task
-    imageIndex = 0;
-    correctCount = 0;
-    return; // Exit the function when all images have been displayed
-  }
-    
-function displayPNGImage(imageURL) {
-  // Clear the displayed image and buttons
-  clearDisplay();
-
-  const imgElement = document.createElement('img');
-  imgElement.src = imageURL;
-  document.body.appendChild(imgElement);
+function lex_next() {
+    window.lexstim_item = lextale_items.shift();
+    document.getElementById('lexstim').textContent = lexstim_item.word;
+    start_time = Date.now();
 }
-
-  // Move to the next image
-  imageIndex++;
-  displayNextImage();
-}
-
-function isImageCorrect(imageFilename, userResponse) {
-  // Replace this with your logic to determine if the user's response is correct
-  // You can use the image filename and the user's response to perform the check
-  // For example:
-  // if (imageFilename === 'image1.png' && userResponse === true) {
-  //   return true;
-  // } else {
-  //   return false;
-  // }
-  return true; // Placeholder, replace with your actual logic
-}
-
-function clearDisplay() {
-  // Clear the displayed image and buttons
-  const imgElement = document.querySelector('img');
-  if (imgElement) {
-    imgElement.remove();
-  }
-
-  const buttonElements = document.querySelectorAll('button');
-  buttonElements.forEach((button) => {
-    button.remove();
-  });
-}
-
 
 let basic_times = {};
 let full_data;
@@ -138,53 +72,22 @@ let bool_dict = {
     1: 'true'
 };
 
-// function lexclick(lexrespd) {
-//     lexstim_item.response_time = Date.now() - start_time;
-//     lexstim_item.response = lexrespd;
-//     console.log(lexstim_item);
-//     let corrresp = 'no';
-//     if (lexstim_item.wstatus === 1 && lexrespd === 'yes') {
-//         corrresp = 'yes';
-//         if (lexstim_item.dummy === 0) {
-//             corr_word++;
-//         }
-//     } else if (lexstim_item.wstatus === 0 && lexrespd === 'no') {
-//         corrresp = 'yes';
-//         if (lexstim_item.dummy === 0) {
-//             corr_nonword++;
-//         }
-//     }
-
-function lexclick(response) {
-  let rt = {
-    'response': response,
-    'rt': Date.now() - start_time
-  };
-
-  if (lexstim_item.word.endsWith('.png')) {
-    rt['word'] = lexstim_item.word;
-    rt['wstatus'] = lexstim_item.wstatus;
-    rt['dummy'] = lexstim_item.dummy;
-  } else {
-    rt['word'] = lexstim_item.word;
-    rt['wstatus'] = lexstim_item.wstatus;
-    rt['dummy'] = lexstim_item.dummy;
-  }
-
-  if (response === 'yes' && lexstim_item.word.endsWith('.png')) {
-    corr_word++;
-  } else if (response === 'no' && !lexstim_item.word.endsWith('.png')) {
-    corr_nonword++;
-  }
-
-  full_data.push(rt);
-
-  if (lextale_items.length === 0) {
-    document.getElementById('div_lex_main').style.display = 'none';
-    document.getElementById('div_end').style.display = 'block';
-  } else {
-    lex_next();
-  }
+function lexclick(lexrespd) {
+    lexstim_item.response_time = Date.now() - start_time;
+    lexstim_item.response = lexrespd;
+    console.log(lexstim_item);
+    let corrresp = 'no';
+    if (lexstim_item.wstatus === 1 && lexrespd === 'yes') {
+        corrresp = 'yes';
+        if (lexstim_item.dummy === 0) {
+            corr_word++;
+        }
+    } else if (lexstim_item.wstatus === 0 && lexrespd === 'no') {
+        corrresp = 'yes';
+        if (lexstim_item.dummy === 0) {
+            corr_nonword++;
+        }
+    }
 
     var inputNumber = document.getElementById("inputField").value;
     full_data += [
@@ -371,18 +274,6 @@ function load_all_ch() {
         elem.src = path_imgs + 'LEXTALE_CH_instruction_question.png';
     });
 }
-
-// function lexmain() {
-//     basic_times.test_start = Date.now();
-//     document.getElementById('div_lex_intro').style.display = 'none';
-//     if (lexlang.length > 2) {
-//         document.getElementById('div_lexch_main').style.display = 'block';
-//         window.scrollTo(0, 0);
-//     } else {
-//         document.getElementById('div_lex_main').style.display = 'block';
-//         lex_next();
-//     }
-// }
 
 function copy_to_clip(text) {
     if (window.clipboardData && window.clipboardData.setData) {
