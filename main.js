@@ -54,7 +54,7 @@ let imageIndex = 0; // Index of the current image being displayed
 let correctCount = 0; // Count of correct responses
 
 // Array of image filenames
-const imageFilenames = ['image1.png', 'image2.png', 'image3.png']; // Replace with your actual image filenames
+const imageFilenames = ['image1.png', 'image2.png', '3_True_29.png']; // Replace with your actual image filenames
 
 function lexmain() {
   basic_times.test_start = Date.now();
@@ -86,23 +86,7 @@ function displayNextImage() {
     correctCount = 0;
     return; // Exit the function when all images have been displayed
   }
-
-  // Create yes/no buttons
-  const yesButton = document.createElement('button');
-  yesButton.textContent = 'Yes';
-  yesButton.addEventListener('click', function () {
-    handleResponse(true);
-  });
-  document.body.appendChild(yesButton);
-
-  const noButton = document.createElement('button');
-  noButton.textContent = 'No';
-  noButton.addEventListener('click', function () {
-    handleResponse(false);
-  });
-  document.body.appendChild(noButton);
-}
-
+    
 function displayPNGImage(imageURL) {
   // Clear the displayed image and buttons
   clearDisplay();
@@ -111,15 +95,6 @@ function displayPNGImage(imageURL) {
   imgElement.src = imageURL;
   document.body.appendChild(imgElement);
 }
-
-function handleResponse(userResponse) {
-  // Check if the user's response is correct
-  const currentImageFilename = imageFilenames[imageIndex];
-  const isCorrect = isImageCorrect(currentImageFilename, userResponse);
-
-  if (isCorrect) {
-    correctCount++;
-  }
 
   // Move to the next image
   imageIndex++;
