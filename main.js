@@ -74,7 +74,6 @@ function displayNextImage() {
     const imageFilename = imageFilenames[imageIndex];
     const imageURL = 'ch_items/' + imageFilename;
     displayPNGImage(imageURL);
-    imageIndex++;
   } else {
     // All images displayed, calculate correct rate
     const totalQuestions = imageFilenames.length;
@@ -85,13 +84,8 @@ function displayNextImage() {
     // Reset variables for the next task
     imageIndex = 0;
     correctCount = 0;
+    return; // Exit the function when all images have been displayed
   }
-}
-
-function displayPNGImage(imageURL) {
-  const imgElement = document.createElement('img');
-  imgElement.src = imageURL;
-  document.body.appendChild(imgElement);
 
   // Create yes/no buttons
   const yesButton = document.createElement('button');
@@ -109,9 +103,18 @@ function displayPNGImage(imageURL) {
   document.body.appendChild(noButton);
 }
 
+function displayPNGImage(imageURL) {
+  // Clear the displayed image and buttons
+  clearDisplay();
+
+  const imgElement = document.createElement('img');
+  imgElement.src = imageURL;
+  document.body.appendChild(imgElement);
+}
+
 function handleResponse(userResponse) {
   // Check if the user's response is correct
-  const currentImageFilename = imageFilenames[imageIndex - 1];
+  const currentImageFilename = imageFilenames[imageIndex];
   const isCorrect = isImageCorrect(currentImageFilename, userResponse);
 
   if (isCorrect) {
@@ -119,7 +122,7 @@ function handleResponse(userResponse) {
   }
 
   // Move to the next image
-  clearDisplay();
+  imageIndex++;
   displayNextImage();
 }
 
@@ -147,6 +150,7 @@ function clearDisplay() {
     button.remove();
   });
 }
+
 
 let basic_times = {};
 let full_data;
