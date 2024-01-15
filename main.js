@@ -49,33 +49,105 @@ function downloadAndMove(data, filenamePrefix) {
 //     start_time = Date.now();
 // }
 
+// Global variables
+let imageIndex = 0; // Index of the current image being displayed
+let correctCount = 0; // Count of correct responses
+
+// Array of image filenames
+const imageFilenames = ['image1.png', 'image2.png', 'image3.png']; // Replace with your actual image filenames
+
 function lexmain() {
   basic_times.test_start = Date.now();
   document.getElementById('div_lex_intro').style.display = 'none';
-  document.getElementById('div_end').style.display = 'none';
 
   if (lexlang.length > 2) {
     document.getElementById('div_lexch_main').style.display = 'block';
     window.scrollTo(0, 0);
   } else {
     document.getElementById('div_lex_main').style.display = 'block';
-    lex_next();
+    displayNextImage();
   }
 }
 
-function lex_next() {
-  window.lexstim_item = lextale_items.shift();
-
-  if (lexstim_item.word.endsWith('.png')) {
-    document.getElementById('leximage').src = 'ch_items/' + lexstim_item.word;
-    document.getElementById('leximage').style.display = 'block';
+function displayNextImage() {
+  if (imageIndex < imageFilenames.length) {
+    const imageFilename = imageFilenames[imageIndex];
+    const imageURL = 'ch_items/' + imageFilename;
+    displayPNGImage(imageURL);
+    imageIndex++;
   } else {
-    document.getElementById('lexstim').textContent = lexstim_item.word;
-    document.getElementById('leximage').style.display = 'none';
+    // All images displayed, calculate correct rate
+    const totalQuestions = imageFilenames.length;
+    const correctRate = (correctCount / totalQuestions) * 100;
+    console.log('Correct Rate:', correctRate.toFixed(2) + '%');
+    // Perform any further actions with the correct rate here
+
+    // Reset variables for the next task
+    imageIndex = 0;
+    correctCount = 0;
+  }
+}
+
+function displayPNGImage(imageURL) {
+  const imgElement = document.createElement('img');
+  imgElement.src = imageURL;
+  document.body.appendChild(imgElement);
+
+  // Create yes/no buttons
+  const yesButton = document.createElement('button');
+  yesButton.textContent = 'Yes';
+  yesButton.addEventListener('click', function () {
+    handleResponse(true);
+  });
+  document.body.appendChild(yesButton);
+
+  const noButton = document.createElement('button');
+  noButton.textContent = 'No';
+  noButton.addEventListener('click', function () {
+    handleResponse(false);
+  });
+  document.body.appendChild(noButton);
+}
+
+function handleResponse(userResponse) {
+  // Check if the user's response is correct
+  const currentImageFilename = imageFilenames[imageIndex - 1];
+  const isCorrect = isImageCorrect(currentImageFilename, userResponse);
+
+  if (isCorrect) {
+    correctCount++;
   }
 
-  start_time = Date.now();
+  // Move to the next image
+  clearDisplay();
+  displayNextImage();
 }
+
+function isImageCorrect(imageFilename, userResponse) {
+  // Replace this with your logic to determine if the user's response is correct
+  // You can use the image filename and the user's response to perform the check
+  // For example:
+  // if (imageFilename === 'image1.png' && userResponse === true) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+  return true; // Placeholder, replace with your actual logic
+}
+
+function clearDisplay() {
+  // Clear the displayed image and buttons
+  const imgElement = document.querySelector('img');
+  if (imgElement) {
+    imgElement.remove();
+  }
+
+  const buttonElements = document.querySelectorAll('button');
+  buttonElements.forEach((button) => {
+    button.remove();
+  });
+}
+
 let basic_times = {};
 let full_data;
 let corr_word = 0;
