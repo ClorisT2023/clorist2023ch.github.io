@@ -87,22 +87,53 @@ let bool_dict = {
     1: 'true'
 };
 
-function lexclick(lexrespd) {
-    lexstim_item.response_time = Date.now() - start_time;
-    lexstim_item.response = lexrespd;
-    console.log(lexstim_item);
-    let corrresp = 'no';
-    if (lexstim_item.wstatus === 1 && lexrespd === 'yes') {
-        corrresp = 'yes';
-        if (lexstim_item.dummy === 0) {
-            corr_word++;
-        }
-    } else if (lexstim_item.wstatus === 0 && lexrespd === 'no') {
-        corrresp = 'yes';
-        if (lexstim_item.dummy === 0) {
-            corr_nonword++;
-        }
-    }
+// function lexclick(lexrespd) {
+//     lexstim_item.response_time = Date.now() - start_time;
+//     lexstim_item.response = lexrespd;
+//     console.log(lexstim_item);
+//     let corrresp = 'no';
+//     if (lexstim_item.wstatus === 1 && lexrespd === 'yes') {
+//         corrresp = 'yes';
+//         if (lexstim_item.dummy === 0) {
+//             corr_word++;
+//         }
+//     } else if (lexstim_item.wstatus === 0 && lexrespd === 'no') {
+//         corrresp = 'yes';
+//         if (lexstim_item.dummy === 0) {
+//             corr_nonword++;
+//         }
+//     }
+
+function lexclick(response) {
+  let rt = {
+    'response': response,
+    'rt': Date.now() - start_time
+  };
+
+  if (lexstim_item.word.endsWith('.png')) {
+    rt['word'] = lexstim_item.word;
+    rt['wstatus'] = lexstim_item.wstatus;
+    rt['dummy'] = lexstim_item.dummy;
+  } else {
+    rt['word'] = lexstim_item.word;
+    rt['wstatus'] = lexstim_item.wstatus;
+    rt['dummy'] = lexstim_item.dummy;
+  }
+
+  if (response === 'yes' && lexstim_item.word.endsWith('.png')) {
+    corr_word++;
+  } else if (response === 'no' && !lexstim_item.word.endsWith('.png')) {
+    corr_nonword++;
+  }
+
+  full_data.push(rt);
+
+  if (lextale_items.length === 0) {
+    document.getElementById('div_lex_main').style.display = 'none';
+    document.getElementById('div_end').style.display = 'block';
+  } else {
+    lex_next();
+  }
 
     var inputNumber = document.getElementById("inputField").value;
     full_data += [
