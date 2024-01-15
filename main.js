@@ -44,12 +44,12 @@ function downloadAndMove(data, filenamePrefix) {
 }
 
 function lex_next() {
-    // window.lexstim_item = lextale_items.shift();
-    // document.getElementById('lexstim').textContent = lexstim_item.word;
-    // start_time = Date.now();
     window.lexstim_item = lextale_items.shift();
-    const sources = lexstim_item.map(dct => dct.filename);
-    document.getElementById('ch_list').innerHTML = sources.map(fillsrcs).join('');
+    document.getElementById('lexstim').textContent = lexstim_item.word;
+    start_time = Date.now();
+    // window.lexstim_item = lextale_items.shift();
+    // const sources = lexstim_item.map(dct => dct.filename);
+    // document.getElementById('ch_list').innerHTML = sources.map(fillsrcs).join('');
 
     preloadAll(sources)
         .then(images => images_loaded())
