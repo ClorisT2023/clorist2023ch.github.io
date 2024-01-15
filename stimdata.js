@@ -2,7 +2,7 @@ lex_dict = {
     'en': [
         { 'word': '隧', 'wstatus': 0, 'dummy': 1 }, 
         { 'word': '弓及', 'wstatus': 1, 'dummy': 1 },
-        { 'word': 'generic', 'wstatus': 1, 'dummy': 1 },
+        { 'word': '3_True_29.png', 'wstatus': 1, 'dummy': 1 },
         { 'word': 'mensible', 'wstatus': 0, 'dummy': 0 },
         { 'word': 'scornful', 'wstatus': 1, 'dummy': 0 },
         { 'word': 'stoutly', 'wstatus': 1, 'dummy': 0 },
